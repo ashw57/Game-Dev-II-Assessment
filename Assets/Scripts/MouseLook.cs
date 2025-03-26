@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseLook : MonoBehaviour
+public class MouseLook : GameBehaviour
 {
 
     public float mouseSensitivity = 100f;
@@ -13,7 +13,8 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if (_GM.currentGameState == GameState.Playing)
+            Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()

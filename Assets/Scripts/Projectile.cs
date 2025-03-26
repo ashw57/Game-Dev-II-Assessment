@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : GameBehaviour
 {
     private bool collided;
+
+    private int damage = 1;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -18,7 +20,9 @@ public class Projectile : MonoBehaviour
 
         if (collision.collider.CompareTag("Target"))
         {
-            Destroy(collision.collider.gameObject, 1f);
+            if (collision.gameObject.GetComponent<Target>() != null)
+                collision.gameObject.GetComponent<Target>().Hit(damage);
+            Destroy(gameObject);
         }
     }
 }
